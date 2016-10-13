@@ -41,6 +41,12 @@ public class BookingsModel {
 	@JsonManagedReference
 	private ResourcesModel resourceDetails;
 	
+	@Column(name = "title")
+	private String title;
+	
+	@Column(name = "description")
+	private String description;
+	
 	/*@Column(name = "resource_id")
 	private String resourceId;*/
 	
@@ -92,6 +98,22 @@ public class BookingsModel {
 	
 	public void setResourceDetails(ResourcesModel resourceDetails) {
 		this.resourceDetails = resourceDetails;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	public Date getDate() {

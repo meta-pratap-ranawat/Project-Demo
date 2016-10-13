@@ -14,6 +14,8 @@ public class BookingsVO {
 	private String bookingId;
 	private UsersVO userDetails;
 	private ResourcesVO resourceDetails;
+	private String title;
+	private String description;
 	private String date;
 	private String startTime;
 	private String endTime;
@@ -42,6 +44,22 @@ public class BookingsVO {
 	
 	public void setResourceDetails(ResourcesVO resourceDetails) {
 		this.resourceDetails = resourceDetails;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	public String getDate() {
