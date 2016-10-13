@@ -37,6 +37,8 @@ CREATE TABLE bookings (
     booking_id VARCHAR(20),
     employee_id INT(5) NOT NULL,
     resource_id INT(3) NOT NULL,
+    title VARCHAR(30) NOT NULL,
+    description VARCHAR(100) NOT NULL,
     date DATE NOT NULL,
     start_time TIME NOT NULL,
     end_time TIME NOT NULL,
