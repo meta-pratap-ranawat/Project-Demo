@@ -1,7 +1,4 @@
-/**
- * Class to manage the api
- * @author Arpit Pittie
- */
+
 package com.project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.model.UsersVO;
+import com.project.service.MailService;
 import com.project.service.UsersFacade;
 
 @Controller
@@ -21,6 +19,9 @@ public class UserAPIController {
 	//To interact with the facade layer
 	@Autowired
 	private UsersFacade usersFacade;
+
+	@Autowired
+	MailService mailService;
 	
 	//To get the beans
 	@Autowired
@@ -118,8 +119,9 @@ public class UserAPIController {
 	public @ResponseBody Response updateUserDetails(@RequestBody UsersVO userDetails) {
 		userDetails = usersFacade.updateUserDetails(userDetails);
 		
-		//Checking if the user exists or not
+		//Checking if the user updated or not
 		if(userDetails != null) {
+			mailService.sendMail(userDetails);
 			return new Response(200, userDetails);
 		} else {
 			return new Response(403, "User details not correct");
