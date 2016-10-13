@@ -17,8 +17,6 @@
     <!-- Custom CSS -->
     <link href="ui/css/sb-admin.css" rel="stylesheet">
 
-    <!-- Morris Charts CSS -->
-    <link href="ui/css/plugins/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="ui/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -44,10 +42,10 @@
     <link href='ui/scheduler/fullcalendar.min.css' rel='stylesheet' />
     <link href='ui/scheduler/scheduler.css' rel='stylesheet' />
     <script src='ui/scheduler/moment.min.js'></script>
-    <script src='ui/scheduler/jquery.min.js'></script>
+    <!-- <script src='ui/scheduler/jquery.min.js'></script> -->
     <script src='ui/scheduler/fullcalendar.min.js'></script>
     <script src='ui/scheduler/scheduler.js'></script>
-    <script src="ui/scheduler/scriptFile.js" charset="utf-8"></script>
+    <!-- <script src="ui/scheduler/scriptFile.js"></script> -->
 
 
     <!-- <script src="ui/js/factoryDashboard.js"></script> -->
@@ -75,7 +73,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Dashboard <small>Statistics Overview</small>
+                            Dashboard <small>Resource Bookings</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
@@ -86,8 +84,8 @@
                 </div>
 
                 <!-- /.row -->
-                <div class="row">
-                    <div  id="calendar" class="col-lg-12">
+                <div class="row" ng-controller="calendarCtrl">
+                    <div  id="calendar" class="col-xs-12">
 
                     </div>
                 </div>

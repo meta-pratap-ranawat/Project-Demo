@@ -10,7 +10,14 @@ function hideURLbar() {
 }
 
 if(sessionStorage.length != 0) {
-	window.location = "admin/index.html";
+	if(typeof sessionStorage.user != 'undefined') {
+		window.location = "admin/index.html";
+	}
+} else {
+	console.log("empty");
+	localStorage.setItem('getSessionStorage', Date.now());
+	sessionStorage.setItem('user', angular.toJson(localStorage.getItem('sessionStorage')));
+	//localStorage.removeItem('sessionStorage');
 }
 
 landingPage.controller('loginForm', function($scope, $http, $window, $rootScope, userDetails, md5) {

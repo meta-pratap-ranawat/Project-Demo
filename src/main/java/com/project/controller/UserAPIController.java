@@ -1,4 +1,7 @@
-
+/**
+ * Class to manage the api
+ * @author Arpit Pittie
+ */
 package com.project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +22,9 @@ public class UserAPIController {
 	//To interact with the facade layer
 	@Autowired
 	private UsersFacade usersFacade;
-
+	
 	@Autowired
-	MailService mailService;
+	private MailService mailService;
 	
 	//To get the beans
 	@Autowired
@@ -119,7 +122,7 @@ public class UserAPIController {
 	public @ResponseBody Response updateUserDetails(@RequestBody UsersVO userDetails) {
 		userDetails = usersFacade.updateUserDetails(userDetails);
 		
-		//Checking if the user updated or not
+		//Checking if the user exists or not
 		if(userDetails != null) {
 			mailService.sendMail(userDetails);
 			return new Response(200, userDetails);

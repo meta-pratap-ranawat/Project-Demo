@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $('#calendar').fullCalendar({
-            defaultView: 'agendaFourDay',
+            defaultView: 'agendaDay',
 			defaultDate: '2016-09-07',
 			editable: true,
 			selectable: true,
@@ -13,7 +13,7 @@ $(document).ready(function() {
 			views: {
 				agendaFourDay: {
 					type: 'agenda',
-					duration: { days: 2 },
+					duration: { days: 4 },
                     snapDuration: {minutes: 15},
 
 					// views that are more than a day will NOT do this behavior by default
@@ -28,12 +28,9 @@ $(document).ready(function() {
 			//// uncomment this line to hide the all-day slot
 			//allDaySlot: false,
 
-			resources: [
-				{ id: 'a', title: 'Room A' },
-				{ id: 'b', title: 'Room B', eventColor: 'green' },
-				{ id: 'c', title: 'Room C', eventColor: 'orange' },
-				{ id: 'd', title: 'Room D', eventColor: 'red' }
-			],
+			resources: function(callback) {
+                callback($scope.currentUser.adminOfResources);
+            },
 			events: [
 				{ id: '1', resourceId: 'a', start: '2016-09-06', end: '2016-09-08', title: 'event 1' },
 				{ id: '2', resourceId: 'a', start: '2016-09-07T09:00:00', end: '2016-09-07T14:00:00', title: 'event 2' },

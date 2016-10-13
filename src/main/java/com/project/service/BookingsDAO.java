@@ -43,7 +43,7 @@ public class BookingsDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 
 		Criteria cr = session.createCriteria(BookingsModel.class);
-		cr.add(Restrictions.eq("status", "pending"));
+		cr.add(Restrictions.eq("status", "Pending"));
 		cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 
 		@SuppressWarnings("unchecked")
