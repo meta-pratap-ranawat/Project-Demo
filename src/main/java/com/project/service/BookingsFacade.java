@@ -3,7 +3,7 @@ package com.project.service;
 
 /**
  * Class to provide a single API for the database interaction with the controllers
- * @author Vivek Mittal
+* @author Pratap Singh Ranawat and Vivek Mittal
  */
 
 import java.util.List;
@@ -13,6 +13,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import com.project.model.BookingsVO;
+import com.project.model.ResourcesVO;
 @Service("bookingsFacade")
 public class BookingsFacade {
 
@@ -27,7 +28,15 @@ public class BookingsFacade {
 	 * To get the list of pending bookings
 	 * @return List of bookings having status = pending
 	 */
-	public List<BookingsVO> pendingBookingsList() {
-		return bookingsService.pendingBookingsList();
+	public List<BookingsVO> pendingBookingsListById(ResourcesVO resourcesVO) {
+		return bookingsService.pendingBookingsListById(resourcesVO);
 	}
+	/**
+	 * To get the list of pending bookings
+	 * @return List of bookings having status = pending
+	 */
+	public List<BookingsVO> approvedBookingsList() {
+		return bookingsService.approvedBookingsList();
+	}
+	
 }
