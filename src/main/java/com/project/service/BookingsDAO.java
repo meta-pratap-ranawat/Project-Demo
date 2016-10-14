@@ -16,7 +16,10 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
+import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -87,6 +90,27 @@ public class BookingsDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 
 		Criteria cr = session.createCriteria(BookingsModel.class);
+//		cr = cr.createAlias("userDetails", "userDetails");
+//		cr = cr.createAlias("resourceDetails", "resourceDetails");
+		/*cr = cr.setProjection(Projections.projectionList()
+				.add(Projections.property("bookingId"), "bookingId")
+				.add(Projections.property("date"), "date")
+				.add(Projections.property("startTime"), "startTime")
+				.add(Projections.property("endTime"), "endTime")
+				.add(Projections.property("title"), "title")
+				.add(Projections.property("description"), "description")
+				.add(Projections.property("status"), "status")
+				.add(Projections.property("numberOfParticipants"), "numberOfParticipants")
+//				.add(Projections.property("userDetails"), "userDetails")
+				.add(Projections.property("userDetails.employeeId"), "userDetails.employeeId")
+				.add(Projections.property("userDetails.name"), "userDetails.name")
+				.add(Projections.property("userDetails.email"), "userDetails.email"));*/
+//				.add(Projections.property("resourceDetails"), "resourceDetails")
+//				.add(Projections.property("resourceDetails.resourceId"), "resourceDetails.resourceId")
+//				.add(Projections.property("resourceDetails.resourceName"), "resourceDetails.resourceName")
+//				.add(Projections.property("resourceDetails.type"), "resourceDetails.type")
+//				.add(Projections.property("resourceDetails.capacity"), "resourceDetails.capacity"));
+//			.setResultTransformer(Transformers.aliasToBean(BookingsModel.class));
 		
 		// Getting the current date and time
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -96,18 +120,20 @@ public class BookingsDAO {
 		
 		 try {
 
-	             date = (Date)dateFormat.parse(currentDate);
+	             date = dateFormat.parse(currentDate);
 	            System.out.println(date);					//DEBUG
+	            cr.add(Restrictions.and(Restrictions.ge("date",date),Restrictions.eq("status", "Approved")));
+	            cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 
 	        } catch (ParseException e) {
 	            e.printStackTrace();
 	        }
 		 
-		cr.add(Restrictions.and(Restrictions.ge("date","date"),Restrictions.eq("status", "Approved")));
+//		cr.add(Restrictions.and(Restrictions.ge("date",date),Restrictions.eq("status", "Approved")));
 		@SuppressWarnings("unchecked")
 		List<BookingsModel> results = cr.list();
 		System.out.println(results.size());					//DEBUG
-		
+		System.out.println(results+"DAO result");
 		// Getting the result
 		return results;
 		
