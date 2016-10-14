@@ -35,10 +35,11 @@ public class BookingsAPIController {
 	 * Following function returns the list of all pending bookings.
 	 * @return Response object showing the list of all pending bookings.
 	 */
-	@RequestMapping(value = "/bookings/getPendingbookings", method = RequestMethod.GET)
+	@RequestMapping(value = "/bookings/getPendingbookings", method = RequestMethod.POST)
 	public @ResponseBody Response getPendingBookingsList(@RequestBody ResourcesVO resourcesVO) {
 		//Getting the result from the facade
 		List<BookingsVO> result = bookingsFacade.pendingBookingsListById(resourcesVO);
+		
 		
 		//Sending back the response to the client
 		if(result != null) {
@@ -58,10 +59,13 @@ public class BookingsAPIController {
 	public @ResponseBody Response getApprovedBookingsList() {
 		//Getting the result from the facade
 		List<BookingsVO> result = bookingsFacade.approvedBookingsList();
-		
+		System.out.println(result.size()+"Reply from facade");
+		for(BookingsVO b : result) {
+			System.out.println(b);
+		}
 		//Sending back the response to the client
 		if(result != null) {
-			System.out.println("OK");
+			System.out.println("OK"+"API controller");
 			return new Response(200, result);
 		} else {
 			System.out.println("Wrong");
